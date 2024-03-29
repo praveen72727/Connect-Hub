@@ -6,7 +6,7 @@
     </div>
     <div class="chat-history-div border mb-4 px-4 py-1" #chatHistoryDiv>
       <div *ngFor="let messages of allMessages">
-        <p> Anonymous says : {{messages.message }}</p>
+        <p><span class="anonymous">< Ghost ></span> {{messages.message }}</p>
       </div>
     </div>
     <div class="send-div d-flex justify-content-end align-items-center">
