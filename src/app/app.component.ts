@@ -46,6 +46,7 @@ export class AppComponent implements OnInit, OnDestroy {
     });
   }
 
+  
   SendMesage(){
     this.submitted = true;
     if (this.messageForm.invalid) {
