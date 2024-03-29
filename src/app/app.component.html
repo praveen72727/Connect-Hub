@@ -4,9 +4,9 @@
       <h3 class="text-primary">Connect Hub</h3>
       <p class="developedBy">Designed and Developed by Praveen</p>
     </div>
-    <div class="chat-history-div border mb-4 px-4 py-1" #chatHistoryDiv>
+    <div class="chat-history-div border mb-4 px-3 py-1 pt-3" #chatHistoryDiv>
       <div *ngFor="let messages of allMessages">
-        <p><span class="anonymous">< Ghost ></span> {{messages.message }}</p>
+        <p><span class="anonymous">Anonymous : </span> {{messages.message }}</p>
       </div>
     </div>
     <div class="send-div d-flex justify-content-end align-items-center">
@@ -21,8 +21,8 @@
             </div> -->
           </div>
           <div class="d-flex justify-content-end align-items-center">
-            <button class="btn btn-info text-white mx-2 py-1 px-2" (click)="SendMesage()" ngbTooltip="Send"><i class="fa-solid fa-paper-plane"></i></button>
-            <button class="refresh-button btn btn-outline-info py-1 px-2" (click)="receiveMessage()" ngbTooltip="Refresh"><i class="fa-solid fa-arrows-rotate"></i></button>
+            <button class="btn btn-info text-white mx-2 py-1 px-2" (click)="SendMesage()"><i class="fa-solid fa-paper-plane"></i></button>
+            <button class="refresh-button btn btn-outline-info py-1 px-2" (click)="receiveMessage()"><i class="fa-solid fa-arrows-rotate"></i></button>
           </div>
         </div>
       </form>
