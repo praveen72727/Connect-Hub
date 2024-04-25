@@ -25,6 +25,12 @@ export class AppComponent implements OnInit, OnDestroy {
 
   allMessages: Message[]=[]
 
+  showEmojiMenu:boolean=false;
+
+  emojiSet = '';
+
+  spinnerToggle:boolean=false;
+
   private ngUnSubscribe: Subject<void> | undefined;
 
   constructor(
@@ -46,12 +52,14 @@ export class AppComponent implements OnInit, OnDestroy {
     });
   }
 
-  
+
   SendMesage(){
     this.submitted = true;
+    this.showEmojiMenu=false;
     if (this.messageForm.invalid) {
       return;
     }
+    this.spinnerToggle=true;
     const formData = {
       message: this.messageForm.get('message')?.value,
     };
@@ -62,11 +70,15 @@ export class AppComponent implements OnInit, OnDestroy {
     });
     setTimeout(() => {
       this.receiveMessage();
+      // this.spinnerToggle=false;
     }, 1000);
   }
 
   receiveMessage(){
+    this.spinnerToggle=true;
     this.isFetching = true;
+    this.showEmojiMenu=false;
+    this.messageForm.reset();
     this.apiService.fetchMessages().subscribe((res)=>{
       this.allMessages = res;
       this.isFetching = false;
@@ -74,6 +86,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.cdr.markForCheck;
     setTimeout(() => {
       this.scrollToBottom();
+      this.spinnerToggle=false;
     }, 1000);
 
   }
@@ -86,6 +99,29 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     } catch (err) {
       console.error('Error scrolling to bottom:', err);
+    }
+  }
+
+  addEmoji(event: any) {
+    const emoji = event.emoji.native; // Get the selected emoji
+    const messageControl = this.messageForm.get('message');
+    if (messageControl) {
+      let currentMessage = messageControl.value || ''; // Check if there's any existing text
+      const updatedMessage = currentMessage + emoji;
+      messageControl.setValue(updatedMessage);
+    } else {
+      this.messageForm.get('message')?.setValue(emoji); // Use optional chaining to access setValue if messageControl is null
+    }
+    console.log('Selected emoji:', emoji);
+  }
+
+  selectEmoji(){
+    this.showEmojiMenu=!this.showEmojiMenu;
+  }
+
+  sendMessageOnEnter() {
+    if (!this.showEmojiMenu) {
+      this.SendMesage();
     }
   }
 

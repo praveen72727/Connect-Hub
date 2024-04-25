@@ -3,6 +3,7 @@
 }
 .chat-history-div{
   overflow: auto;
+  position: relative;
 }
 .developedBy{
   font-size:12PX;
@@ -13,4 +14,13 @@
 .anonymous1{
   font-weight:500;
   color:purple;
+}
+.emojis-div{
+  right:0;
+  bottom:40px;
+}
+.spinner-p{
+  position:absolute;
+  left:50%;
+  bottom: 65px;
 }
