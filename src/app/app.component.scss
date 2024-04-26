@@ -13,7 +13,7 @@
   bottom:0;
   left:50%;
   transform: translateX(-50%);
-  font-size:12PX;
+  font-size:12px;
 }
 .refresh-button.btn:hover {
   color: #ffffff !important;
@@ -24,7 +24,7 @@
 }
 .emojis-div{
   right:0;
-  bottom:40px;
+  bottom:50px;
 }
 .spinner-p{
   position:absolute;
@@ -33,6 +33,9 @@
 }
 .timestamp{
   font-size:10px;
+  // color: rgba(72, 90, 101, .6);
+  margin-left:33px;
+  margin-top:2px;
 }
 .message-div{
   border:1px solid #dddddd;
@@ -42,6 +45,15 @@
 .message-user-icon{
   font-size:24px;
 }
+
+.message-input-box{
+  border:1px solid #0d6efd;
+}
+
+.message-input-box:focus{
+  border:1px solid #dddddd;
+}
+
 //scrollbar
 
 ::-webkit-scrollbar {
@@ -55,11 +67,10 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #0d6efd;
+  background: #cfd1d5;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  // background: #2f8be6;
-  background: #0d6efd;
+  background: #BDBDBD;
 }

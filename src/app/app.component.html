@@ -3,14 +3,17 @@
 </div>
 <section class="chat-window-section p-4">
   <div class="chat-window-div container position-relative border rounded p-2">
-    <div class="chat-history-div mb-2 px-2 py-1 pt-3" #chatHistoryDiv>
+    <div class="chat-history-div mb-3 px-1 py-1 pt-3" #chatHistoryDiv>
       <div *ngFor="let messages of allMessages">
-        <div class="mb-1">
+        <div class="mb-2">
           <div class="d-flex align-items-center">
-            <i class="fa-solid fa-circle-user text-primary me-1 message-user-icon"></i>
-            <div class="message-div px-2 py-1">{{messages.message }}</div>
+            <i class="fa-solid fa-circle-user text-primary me-2 message-user-icon"></i>
+              <div class="message-div px-2 py-1 text-black">{{messages.message }}</div>
           </div>
-          <span class="timestamp">{{ messages.timestamp | date: 'medium' }}</span>
+          <div class="d-flex">
+            <span class="timestamp me-1">{{ messages.timestamp | date: 'medium' }}</span>
+            <!-- <img src="assets/images/blue_ticks.png" width="13" alt=""> -->
+          </div>
         </div>
       </div>
     </div>
@@ -22,7 +25,7 @@
       <form [formGroup]="messageForm" class="w-100">
         <div class="d-flex justify-content-end align-items-start">
           <div class="w-100 d-flex flex-column">
-            <input class="message-input-box w-100 px-2 py-1 border-primary rounded" type="text" formControlName="message" [ngClass]="{ 'is-invalid': submitted && messageForm.get('message')?.invalid }" placeholder="Message" (emojiSelected)="addEmoji($event)" [(ngModel)]="emojiSet" (keydown.enter)="sendMessageOnEnter()">
+            <input class="message-input-box w-100 px-2 py-1 rounded" type="text" formControlName="message" [ngClass]="{ 'is-invalid': submitted && messageForm.get('message')?.invalid }" placeholder="Message" (emojiSelected)="addEmoji($event)" [(ngModel)]="emojiSet" (keydown.enter)="sendMessageOnEnter()">
             <!-- <div *ngIf="submitted && messageForm.get('message')?.invalid" class="invalid-feedback">
               <div *ngIf="submitted && messageForm.get('message')?.hasError('required')">
                 <span class="text-success">Type something...</span>
