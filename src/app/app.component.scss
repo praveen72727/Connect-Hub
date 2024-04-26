@@ -1,3 +1,6 @@
+.chat-window-div{
+  background-color: #ffffff;
+}
 .chat-history-div{
   height:450px;
 }
@@ -6,6 +9,10 @@
   position: relative;
 }
 .developedBy{
+  position:absolute;
+  bottom:0;
+  left:50%;
+  transform: translateX(-50%);
   font-size:12PX;
 }
 .refresh-button.btn:hover {
@@ -23,4 +30,36 @@
   position:absolute;
   left:50%;
   bottom: 65px;
+}
+.timestamp{
+  font-size:10px;
+}
+.message-div{
+  border:1px solid #dddddd;
+  width:100%;
+  border-radius: 10px 10px 10px 0;
+}
+.message-user-icon{
+  font-size:24px;
+}
+//scrollbar
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 1px !important;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #e0e0e0;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0d6efd;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  // background: #2f8be6;
+  background: #0d6efd;
 }

@@ -62,6 +62,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.spinnerToggle=true;
     const formData = {
       message: this.messageForm.get('message')?.value,
+      timestamp: new Date(), // Add timestamp here
     };
     const headers=new HttpHeaders({'myHeader':'Praveen'});
     this.http.post<{message:string}>('https://connecthub-6f9e0-default-rtdb.firebaseio.com/messages.json', formData,  { headers }).subscribe((res) => {
@@ -80,7 +81,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.showEmojiMenu=false;
     this.messageForm.reset();
     this.apiService.fetchMessages().subscribe((res)=>{
-      this.allMessages = res;
+      this.allMessages = res.map((message: any) => ({
+        message: message.message,
+        timestamp: new Date(message.timestamp), // Assuming timestamp is returned from API
+      }));
       this.isFetching = false;
     })
     this.cdr.markForCheck;

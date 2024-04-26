@@ -1,15 +1,20 @@
+<div class="heading-div bg-primary">
+  <h4 class="text-white container py-3 m-0 text-center"><i class="fa-solid fa-comments text-white"></i> Connect <span class="">Hub</span></h4>
+</div>
 <section class="chat-window-section p-4">
-  <div class="chat-window-div container position-relative">
-    <div class="heading-div mt-2 mb-4">
-      <h3 class="text-primary">Connect Hub</h3>
-      <p class="developedBy">Designed and Developed by Praveen</p>
-    </div>
-    <div class="chat-history-div border mb-4 px-3 py-1 pt-3" #chatHistoryDiv>
+  <div class="chat-window-div container position-relative border rounded p-2">
+    <div class="chat-history-div mb-2 px-2 py-1 pt-3" #chatHistoryDiv>
       <div *ngFor="let messages of allMessages">
-        <p><span class="anonymous1">Anonymous : </span> {{messages.message }}</p>
+        <div class="mb-1">
+          <div class="d-flex align-items-center">
+            <i class="fa-solid fa-circle-user text-primary me-1 message-user-icon"></i>
+            <div class="message-div px-2 py-1">{{messages.message }}</div>
+          </div>
+          <span class="timestamp">{{ messages.timestamp | date: 'medium' }}</span>
+        </div>
       </div>
     </div>
-    <p class="d-flex justify-content-center spinner-p m-0" *ngIf="spinnerToggle"><i class="fa fa-spinner fa-spin"></i></p>
+    <p class="d-flex justify-content-center spinner-p m-0" *ngIf="spinnerToggle"><i class="fa fa-spinner fa-spin text-primary"></i></p>
     <div class="position-absolute emojis-div">
       <emoji-mart *ngIf="showEmojiMenu" title="Pick your emoji…" emoji="point_up" (emojiClick)="addEmoji($event)"></emoji-mart>
     </div>
@@ -17,7 +22,7 @@
       <form [formGroup]="messageForm" class="w-100">
         <div class="d-flex justify-content-end align-items-start">
           <div class="w-100 d-flex flex-column">
-            <input class="message-input-box w-100 px-2 py-1" type="text" formControlName="message" [ngClass]="{ 'is-invalid': submitted && messageForm.get('message')?.invalid }" placeholder="Message" (emojiSelected)="addEmoji($event)" [(ngModel)]="emojiSet" (keydown.enter)="sendMessageOnEnter()">
+            <input class="message-input-box w-100 px-2 py-1 border-primary rounded" type="text" formControlName="message" [ngClass]="{ 'is-invalid': submitted && messageForm.get('message')?.invalid }" placeholder="Message" (emojiSelected)="addEmoji($event)" [(ngModel)]="emojiSet" (keydown.enter)="sendMessageOnEnter()">
             <!-- <div *ngIf="submitted && messageForm.get('message')?.invalid" class="invalid-feedback">
               <div *ngIf="submitted && messageForm.get('message')?.hasError('required')">
                 <span class="text-success">Type something...</span>
@@ -34,5 +39,5 @@
     </div>
   </div>
 </section>
-
+<p class="developedBy text-nowrap">Designed and Developed by <span class="text-primary">Praveen</span></p>
 <router-outlet></router-outlet>
